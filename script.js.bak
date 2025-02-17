@@ -26,6 +26,24 @@ function scrollToContact() {
     contactForm.scrollIntoView({ behavior: 'smooth' });
 }
 
+// וולידציה של הטופס
+function validateForm(form) {
+    let isValid = true;
+    const formGroups = form.querySelectorAll('.form-group');
+    
+    formGroups.forEach(group => {
+        const input = group.querySelector('input, textarea');
+        group.classList.remove('error');
+        
+        if (input.validity.valid === false) {
+            group.classList.add('error');
+            isValid = false;
+        }
+    });
+    
+    return isValid;
+}
+
 // כשהדף נטען
 document.addEventListener('DOMContentLoaded', function() {
     // סגירת המודל בלחיצה על הרקע

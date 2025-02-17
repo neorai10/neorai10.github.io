@@ -73,3 +73,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+// להוסיף בסוף הקובץ
+document.getElementById('mainContactForm').addEventListener('submit', handleSubmit);
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const submitButton = event.target.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
+    
+    // הטופס נשלח דרך formspree
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new FormData(event.target),
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            submitButton.innerHTML = '<i class="fas fa-check"></i> נשלח בהצלחה!';
+            event.target.reset();
+        } else {
+            submitButton.innerHTML = '<i class="fas fa-times"></i> שגיאה בשליחה';
+        }
+    }).catch(error => {
+        submitButton.innerHTML = '<i class="fas fa-times"></i> שגיאה בשליחה';
+    }).finally(() => {
+        setTimeout(() => {
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'שלח פנייה';
+        }, 3000);
+    });
+}
