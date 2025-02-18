@@ -574,4 +574,88 @@ body {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
+}/* Status Messages */
+.status-message {
+    margin: 1rem 0;
+    padding: 0.5rem;
+    border-radius: 5px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.status-message.success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+.status-content {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+}
+
+.status-message i {
+    font-size: 1.2rem;
+}
+
+.status-message.success i {
+    color: #155724;
+}
+
+.status-message.error i {
+    color: #721c24;
+}
+
+.status-message button {
+    margin-right: auto;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    opacity: 0.5;
+}
+
+.status-message button:hover {
+    opacity: 1;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* שיפור עיצוב שדות שגויים */
+.form-group.error input,
+.form-group.error textarea {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
+}
+
+.form-validation-error {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+    display: none;
+    animation: fadeIn 0.2s ease-in;
+}
+
+.form-group.error .form-validation-error {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
