@@ -41,6 +41,8 @@ const ValidationUtils = {
 
 // UI Feedback utilities
 const UIFeedback = {
+    hasSetFocus: false,
+    
     showError: (group, message) => {
         const errorDiv = group.querySelector('.form-validation-error');
         group.classList.add('error');
@@ -69,7 +71,7 @@ const UIFeedback = {
             case 'success':
                 button.innerHTML = '<i class="fas fa-check"></i> ' + message;
                 // Show success message
-                UIFeedback.showStatusMessage('success', 'הטופס נשלח בהצלחה!');
+                UIFeedback.showStatusMessage('success', 'הטופס נשלח בהצלחה! נציג שלנו יחזור אליך בהקדם.');
                 break;
             case 'error':
                 button.innerHTML = '<i class="fas fa-times"></i> ' + message;
@@ -160,17 +162,36 @@ function validateForm(form) {
     return isValid;
 }
 
-// Modal handling
+// Modal handling - מוחק את הגדרה הראשונה ומשתמש רק בהגדרה המורחבת
 const ImageModal = {
+    currentIndex: 0,
+    images: [],
+    
     open: (card) => {
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
-        const img = card.querySelector('img');
-        const caption = card.querySelector('h3').textContent;
-        const description = card.querySelector('p').textContent;
+        const workCards = document.querySelectorAll('.work-card');
         
-        modalImg.src = img.src;
-        document.querySelector('.modal-caption').textContent = `${caption} - ${description}`;
+        // שמירת כל תמונות העבודות
+        ImageModal.images = [];
+        workCards.forEach((workCard, index) => {
+            const img = workCard.querySelector('img');
+            const caption = workCard.querySelector('h3').textContent;
+            const description = workCard.querySelector('p').textContent;
+            
+            ImageModal.images.push({
+                src: img.src,
+                caption: caption,
+                description: description
+            });
+            
+            // בדיקה אם זו התמונה הנוכחית
+            if (workCard === card) {
+                ImageModal.currentIndex = index;
+            }
+        });
+        
+        ImageModal.showImage(ImageModal.currentIndex);
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     },
@@ -178,13 +199,38 @@ const ImageModal = {
     close: () => {
         document.getElementById('imageModal').style.display = 'none';
         document.body.style.overflow = 'auto';
+    },
+    
+    showImage: (index) => {
+        const modalImg = document.getElementById('modalImage');
+        const captionDiv = document.querySelector('.modal-caption');
+        const image = ImageModal.images[index];
+        
+        modalImg.src = image.src;
+        modalImg.alt = `${image.caption} - ${image.description}`;
+        captionDiv.textContent = `${image.caption} - ${image.description}`;
+    },
+    
+    nextImage: () => {
+        ImageModal.currentIndex = (ImageModal.currentIndex + 1) % ImageModal.images.length;
+        ImageModal.showImage(ImageModal.currentIndex);
+    },
+    
+    prevImage: () => {
+        ImageModal.currentIndex = (ImageModal.currentIndex - 1 + ImageModal.images.length) % ImageModal.images.length;
+        ImageModal.showImage(ImageModal.currentIndex);
     }
 };
+
+// עדכון פונקציית פתיחת המודל
+function openImageModal(card) {
+    ImageModal.open(card);
+}
 
 // Scroll utilities
 const ScrollUtils = {
     scrollToContact: () => {
-        document.querySelector('.contact-form').scrollIntoView({ 
+        document.querySelector('#contact').scrollIntoView({ 
             behavior: 'smooth',
             block: 'center'
         });
@@ -203,8 +249,127 @@ const ScrollUtils = {
     }
 };
 
+// FAQ Toggle
+function initFaqToggle() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Toggle active class on the clicked item
+            item.classList.toggle('active');
+            
+            // Close other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+        });
+    });
+}
+
+// תפריט ניווט למובייל
+function initMobileNav() {
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    navToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
+    
+    // סגירת התפריט בלחיצה על קישור
+    const navItems = document.querySelectorAll('.nav-links a');
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+}
+
+// אנימציות גלילה
+function initScrollAnimations() {
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                fadeInObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    fadeElements.forEach(element => {
+        fadeInObserver.observe(element);
+    });
+}
+
+// טיפול בסרטון
+function initVideoPlaceholder() {
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    
+    if (videoPlaceholder) {
+        videoPlaceholder.addEventListener('click', function() {
+            // אם יש סרטון יוטיוב, אפשר להחליף את תמונת הממתינה באייפריים
+            
+            // לדוגמה:
+            // const videoId = 'YOUR_VIDEO_ID';
+            // const iframe = document.createElement('iframe');
+            // iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            // iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            // iframe.allowFullscreen = true;
+            
+            // const responsiveVideo = document.createElement('div');
+            // responsiveVideo.className = 'responsive-video';
+            // responsiveVideo.appendChild(iframe);
+            
+            // videoPlaceholder.parentNode.replaceChild(responsiveVideo, videoPlaceholder);
+            
+            // כאשר אין סרטון אמיתי, אפשר פשוט להציג התראה
+            alert('הסרטון יהיה זמין בקרוב! 🎬');
+        });
+    }
+}
+
+// חלקה של המעבר לקישורי עוגן
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80, // תיקון למרווח של התפריט
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
 // Event listeners setup
 document.addEventListener('DOMContentLoaded', () => {
+    // הגדר זיהויי סקציות לצורך ניווט אם לא קיימים
+    if (!document.querySelector('#services')) document.querySelector('.services').id = 'services';
+    if (!document.querySelector('#our-works')) document.querySelector('.our-works').id = 'our-works';
+    if (!document.querySelector('#testimonials')) document.querySelector('.testimonials').id = 'testimonials';
+    if (!document.querySelector('#about-us')) document.querySelector('.about-us').id = 'about-us';
+    if (!document.querySelector('#contact')) document.querySelector('.contact-form').id = 'contact';
+    
+    // אתחול כל הפונקציונליות
+    initFaqToggle();
+    initMobileNav();
+    initScrollAnimations();
+    initVideoPlaceholder();
+    initSmoothScroll();
+    
     // Modal event listeners
     document.getElementById('imageModal').addEventListener('click', (e) => {
         if (e.target === e.currentTarget) {
@@ -213,15 +378,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Form submission
-    document.getElementById('mainContactForm').addEventListener('submit', handleSubmit);
+    const mainContactForm = document.getElementById('mainContactForm');
+    if (mainContactForm) {
+        mainContactForm.addEventListener('submit', handleSubmit);
+    }
     
     // Scroll handling
     window.addEventListener('scroll', ScrollUtils.handleFloatingButton);
     
     // Keyboard events
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            ImageModal.close();
+        if (document.getElementById('imageModal').style.display === 'flex') {
+            if (e.key === 'Escape') {
+                ImageModal.close();
+            } else if (e.key === 'ArrowLeft') {
+                ImageModal.nextImage();
+            } else if (e.key === 'ArrowRight') {
+                ImageModal.prevImage();
+            }
         }
     });
     
@@ -238,4 +412,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // התאמת תפקוד הכפתור הצף
+    const floatingContactBtn = document.querySelector('.floating-contact-btn');
+    if (floatingContactBtn) {
+        floatingContactBtn.addEventListener('click', () => {
+            ScrollUtils.scrollToContact();
+        });
+    }
 });
+
+// מוודא שהפונקציה scrollToContact קיימת גם בסקופ הגלובלי לשימוש ב-onclick
+function scrollToContact() {
+    ScrollUtils.scrollToContact();
+}

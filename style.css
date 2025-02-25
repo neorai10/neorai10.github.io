@@ -214,10 +214,11 @@ body {
 }
 
 .form-validation-error {
-    color: red;
-    font-size: 0.9rem;
+    color: #dc3545;
+    font-size: 0.875rem;
     margin-top: 0.25rem;
     display: none;
+    animation: fadeIn 0.2s ease-in;
 }
 
 .form-group.error .form-validation-error {
@@ -226,7 +227,8 @@ body {
 
 .form-group.error input,
 .form-group.error textarea {
-    border-color: red;
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
 }
 
 /* כפתורים */
@@ -348,6 +350,14 @@ body {
     flex-direction: column;
 }
 
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
 .image-modal img {
     max-width: 90%;
     max-height: 80vh;
@@ -372,6 +382,34 @@ body {
     background: none;
     border: none;
     z-index: 1001;
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255,255,255,0.3);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.modal-nav:hover {
+    background-color: rgba(255,255,255,0.5);
+}
+
+.modal-nav.prev {
+    right: 20px;
+}
+
+.modal-nav.next {
+    left: 20px;
 }
 
 /* חלק מי אנחנו */
@@ -401,6 +439,7 @@ body {
     color: var(--primary-color);
     font-weight: bold;
 }
+
 /* חוות דעת */
 .testimonials {
     padding: 4rem 2rem;
@@ -464,26 +503,6 @@ body {
     margin-left: 0.5rem;
 }
 
-/* כפתור וואטסאפ */
-.whatsapp-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: white;
-    padding: 12px 24px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-.whatsapp-button:hover {
-    background-color: #128c7e;
-}
 /* אזורי שירות */
 .service-areas {
     padding: 4rem 2rem;
@@ -562,19 +581,572 @@ body {
     font-size: 1.5rem;
 }
 
-/* התאמה למובייל */
-@media (max-width: 768px) {
-    .areas-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .whatsapp-button {
-        bottom: 10px;
-        right: 10px;
-        padding: 8px 16px;
-        font-size: 0.9rem;
-    }
-}/* Status Messages */
+/* שאלות נפוצות */
+.faq {
+    padding: 4rem 2rem;
+    background-color: white;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    padding: 1.5rem;
+    max-height: 300px;
+}
+
+.faq-item.active .fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+.fa-chevron-down {
+    transition: transform 0.3s ease;
+}
+
+/* תפריט ניווט */
+.main-nav {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0.5rem 1rem;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    flex-shrink: 0;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+.nav-cta {
+    background-color: var(--secondary-color);
+    color: white !important;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.nav-cta:hover {
+    background-color: var(--primary-color);
+}
+
+.nav-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* אנימציות גלילה */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* סקציית מחירים */
+.pricing {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.pricing-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+}
+
+.pricing-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.pricing-card.premium {
+    border: 2px solid var(--secondary-color);
+}
+
+.pricing-tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom-left-radius: 10px;
+}
+
+.pricing-header {
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.pricing-header h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.pricing-body {
+    padding: 1.5rem;
+}
+
+.pricing-body ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.pricing-body li { 
+    padding: 0.7rem 0; 
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.pricing-body li i {
+    color: var(--secondary-color);
+    margin-left: 0.5rem;
+}
+
+.pricing-footer {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.pricing-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pricing-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* סקציית צוות */
+.team {
+    padding: 4rem 2rem;
+    background-color: white;
+}
+
+.team-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto 0;
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+}
+
+.member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 4rem;
+    overflow: hidden;
+}
+
+.member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.member-title {
+    color: var(--secondary-color);
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.member-desc {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.member-phone {
+    display: inline-block;
+    background-color: #f5f5f5;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.member-phone i {
+    color: var(--secondary-color);
+    margin-left: 0.5rem;
+}
+
+/* רשתות חברתיות */
+.social-media {
+    padding: 3rem 2rem;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.social-icon.facebook {
+    background-color: #3b5998;
+}
+
+.social-icon.instagram {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.social-icon.whatsapp {
+    background-color: #25d366;
+}
+
+/* פוטר */
+.footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 2rem 1rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-logo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.footer-logo img {
+    max-width: 150px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-info p {
+    margin-bottom: 0.8rem;
+}
+
+.footer-info i {
+    margin-left: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-nav li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-nav a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-nav a:hover {
+    color: var(--secondary-color);
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* סקציית וידאו */
+.video-section {
+    padding: 4rem 2rem;
+    background-color: white;
+    text-align: center;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 2rem auto 0;
+}
+
+.responsive-video {
+    position: relative;
+    padding-bottom: 56.25%; /* יחס של 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.responsive-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.video-placeholder {
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.video-placeholder img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.play-button i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-left: 0.5rem; /* התאמה לאייקון Play שמצביע ימינה */
+}
+
+.placeholder-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 1rem;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.video-placeholder:hover .placeholder-overlay {
+    opacity: 1;
+}
+
+.video-placeholder:hover .play-button {
+    background-color: white;
+}
+
+.video-placeholder:hover img {
+    transform: scale(1.05);
+}
+
+/* סקציית מבצעים */
+.promotions {
+    padding: 4rem 2rem;
+    background-color: #f9f9f9;
+}
+
+.promo-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.promo-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s;
+    border-right: 4px solid var(--secondary-color);
+}
+
+.promo-card:hover {
+    transform: translateY(-5px);
+}
+
+.promo-icon {
+    background-color: var(--secondary-color);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 2rem;
+}
+
+.promo-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.promo-content p {
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.promo-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-top: auto;
+    text-align: center;
+}
+
+.promo-button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Status Messages */
 .status-message {
     margin: 1rem 0;
     padding: 0.5rem;
@@ -636,26 +1208,168 @@ body {
     }
 }
 
-/* שיפור עיצוב שדות שגויים */
-.form-group.error input,
-.form-group.error textarea {
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25);
-}
-
-.form-validation-error {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-    display: none;
-    animation: fadeIn 0.2s ease-in;
-}
-
-.form-group.error .form-validation-error {
-    display: block;
-}
-
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+
+/* אם רוצים להשאיר את המראה הנוכחי אבל לשפר נגישות */
+.form-group label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* התאמות למובייל */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        flex-direction: column;
+        padding: 2rem;
+        transition: right 0.3s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-toggle {
+        display: block;
+    }
+
+    .areas-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .whatsapp-button {
+        bottom: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .team-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-nav {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .modal-nav.prev {
+        right: 10px;
+    }
+    
+    .modal-nav.next {
+        left: 10px;
+    }
+    
+    .pricing-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-logo, .footer-info, .footer-nav {
+        margin-bottom: 1.5rem;
+    }
+    
+    .play-button {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .play-button i {
+        font-size: 1.5rem;
+    }
+    
+    .promo-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* התאמות נוספות למובייל */
+@media (max-width: 576px) {
+    /* הגדלת גודל כפתורים */
+    .cta-button, 
+    .pricing-button, 
+    .whatsapp-button {
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    /* הגדלת גודל אייקונים */
+    .service-icon, 
+    .modal-nav i {
+        font-size: 2rem;
+    }
+    
+    /* שיפור רווחים */
+    .service-card, 
+    .client-card, 
+    .testimonial-card, 
+    .pricing-card, 
+    .team-member {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* הקטנת רווחים בין סקציות */
+    section {
+        padding: 3rem 1rem;
+    }
+    
+    /* התאמת גודל כותרות */
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    h3 {
+        font-size: 1.4rem;
+    }
+    
+    /* שיפור הטופס במובייל */
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    .form-group input, 
+    .form-group textarea {
+        padding: 0.6rem;
+    }
+    
+    /* שיפור תצוגת גריד */
+    .services-grid, 
+    .works-grid, 
+    .clients-grid, 
+    .testimonials-grid, 
+    .pricing-container, 
+    .team-container {
+        gap: 1rem;
+    }
 }

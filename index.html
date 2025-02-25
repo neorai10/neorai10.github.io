@@ -13,12 +13,11 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="סופר קור נהריה - מומחים למיזוג אוויר">
     <meta property="og:description" content="התקנה, תיקון ושירות למזגנים - 30 שנות ניסיון באזור הצפון">
-    <meta property="og:image" content="https://neorai10.github.io/images/supercool-logo.png">
-    <meta property="og:url" content="https://neorai10.github.io/">
+    <meta property="og:image" content="https://superkor.co.il/images/supercool-logo.png">
+    <meta property="og:url" content="https://superkor.co.il/">
     <meta property="og:type" content="website">
     
     <!-- External Resources -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <link rel="stylesheet" href="style.css">
     
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -30,16 +29,74 @@
     <meta http-equiv="Content-Language" content="he">
     <meta name="geo.region" content="IL">
     <meta name="geo.placename" content="Nahariya">
+    
+    <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "סופר קור נהריה",
+      "image": "https://superkor.co.il/images/supercool-logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "יצחק שדה",
+        "addressLocality": "נהריה",
+        "addressRegion": "צפון",
+        "postalCode": "22100",
+        "addressCountry": "IL"
+      },
+      "telephone": "0522613282",
+      "email": "neorai10@gmail",
+      "url": "https://superkor.co.il/",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+          "opens": "08:00",
+          "closes": "19:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Friday",
+          "opens": "08:00",
+          "closes": "13:00"
+        }
+      ],
+      "priceRange": "₪₪-₪₪₪",
+      "servesCuisine": "מיזוג אוויר",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "33.0038",
+        "longitude": "35.0981"
+      }
+    }
+    </script>
 </head>
 <body>
     <header class="header">
         <p>שירות מקצועי ואמין - קבל הצעת מחיר חינם!</p>
     </header>
-
+<nav class="main-nav">
+    <div class="nav-container">
+        <div class="nav-logo">
+            <img src="images/supercool-logo.png" alt="סופר קור נהריה - לוגו" width="120" height="40" loading="lazy">
+        </div>
+        <div class="nav-toggle" aria-label="פתח תפריט">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#services">השירותים שלנו</a></li>
+            <li><a href="#our-works">פרויקטים</a></li>
+            <li><a href="#testimonials">חוות דעת</a></li>
+            <li><a href="#about-us">אודות</a></li>
+            <li><a href="#contact" class="nav-cta">צור קשר</a></li>
+        </ul>
+    </div>
+</nav>
     <section class="hero">
         <div class="hero-content">
             <div class="company-logo">
-                <img src="images/supercool-logo.png" alt="סופר קור נהריה">
+                <img src="images/supercool-logo.png" alt="סופר קור נהריה - לוגו ראשי" width="300" height="100">
             </div>
             <h1>סופר קור נהריה</h1>
             <p>המומחים למיזוג אוויר - התקנה, שירות ותחזוקה</p>
@@ -47,38 +104,81 @@
             <div class="contact-info-header">
                 <div class="phone-display">
                     <i class="fas fa-phone"></i>
-                    <span class="phone-number">0522613282</span>
+                    <a href="tel:0522613282" class="phone-number" style="text-decoration:none;">0522613282</a>
                     <span class="contact-name">ברוך</span>
                 </div>
             </div>
 
-            <div class="contact-form">
+            <div class="contact-form" id="contact">
                 <h3>השאירו פרטים ונחזור אליכם בהקדם</h3>
                 <form id="mainContactForm" action="https://formspree.io/f/xkgovvnb" method="POST" onsubmit="return validateForm(this)">
                     <div class="form-group">
-                        <input type="text" name="name" placeholder="שם מלא" required minlength="2">
+                        <label for="contact-name">שם מלא</label>
+                        <input type="text" id="contact-name" name="name" placeholder="שם מלא" required minlength="2">
                         <div class="form-validation-error">נא להזין שם מלא (לפחות 2 תווים)</div>
                     </div>
+
                     <div class="form-group">
-                        <input type="email" name="email" placeholder="אימייל" required>
+                        <label for="contact-email">אימייל</label>
+                        <input type="email" id="contact-email" name="email" placeholder="אימייל" required>
                         <div class="form-validation-error">נא להזין כתובת אימייל תקינה</div>
                     </div>
+
                     <div class="form-group">
-                        <input type="tel" name="phone" placeholder="טלפון" required pattern="[0-9]{9,10}">
+                        <label for="contact-phone">טלפון</label>
+                        <input type="tel" id="contact-phone" name="phone" placeholder="טלפון" required pattern="[0-9]{9,10}">
                         <div class="form-validation-error">נא להזין מספר טלפון תקין (9-10 ספרות)</div>
                     </div>
+
                     <div class="form-group">
-                        <textarea name="message" placeholder="איך נוכל לעזור?" required minlength="10"></textarea>
+                        <label for="contact-message">איך נוכל לעזור?</label>
+                        <textarea id="contact-message" name="message" placeholder="איך נוכל לעזור?" required minlength="10"></textarea>
                         <div class="form-validation-error">נא להזין הודעה של לפחות 10 תווים</div>
                     </div>
+                    
                     <input type="hidden" name="_subject" value="פנייה חדשה מהאתר - סופר קור">
-                    <button type="submit" class="cta-button">שלח פנייה</button>
+                    <button type="submit" class="cta-button" aria-label="שלח טופס">שלח פנייה</button>
                 </form>
             </div>
         </div>
     </section>
-
-    <section class="services">
+<section class="promotions">
+    <div class="promo-container">
+        <div class="promo-card fade-in">
+            <div class="promo-icon">
+                <i class="fas fa-gift"></i>
+            </div>
+            <div class="promo-content">
+                <h3>מבצע חורף 2025</h3>
+                <p>בהזמנת מזגן עילי + התקנה, קבלו טיפול שנתי ראשון חינם!</p>
+                <a href="#contact" class="promo-button">למימוש ההטבה</a>
+            </div>
+        </div>
+        
+        <div class="promo-card fade-in">
+            <div class="promo-icon">
+                <i class="fas fa-percentage"></i>
+            </div>
+            <div class="promo-content">
+                <h3>מבצע לקוחות חדשים</h3>
+                <p>15% הנחה על התקנת מזגן שני לבית!</p>
+                <a href="#contact" class="promo-button">למימוש ההטבה</a>
+            </div>
+        </div>
+        
+        <div class="promo-card fade-in">
+            <div class="promo-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <div class="promo-content">
+                <h3>חבילת תחזוקה שנתית</h3>
+                <p>שירות, ניקוי פילטרים וטיפול מונע במחיר מיוחד</p>
+                <a href="#contact" class="promo-button">לפרטים נוספים</a>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="services" id="services">
         <h2>השירותים שלנו</h2>
         <div class="services-grid">
             <div class="service-card">
@@ -104,14 +204,77 @@
             </div>
         </div>
     </section>
-
-    <section class="our-works">
+   <section class="pricing">
+    <h2 class="section-title">חבילות שירות</h2>
+    <p class="section-subtitle">אנו מציעים מגוון חבילות המותאמות לצרכים שונים</p>
+    
+    <div class="pricing-container">
+        <div class="pricing-card fade-in">
+            <div class="pricing-header">
+                <h3>חבילה בסיסית</h3>
+                <p class="price">החל מ-₪750</p>
+            </div>
+            <div class="pricing-body">
+                <ul>
+                    <li><i class="fas fa-check"></i> התקנת מזגן עילי</li>
+                    <li><i class="fas fa-check"></i> 2 מטר צנרת</li>
+                    <li><i class="fas fa-check"></i> אחריות לשנה על ההתקנה</li>
+                    <li><i class="fas fa-check"></i> בדיקה ראשונית</li>
+                </ul>
+            </div>
+            <div class="pricing-footer">
+                <a href="#contact" class="pricing-button">לפרטים נוספים</a>
+            </div>
+        </div>
+        
+        <div class="pricing-card fade-in">
+            <div class="pricing-header">
+                <h3>חבילה מורחבת</h3>
+                <p class="price">החל מ-₪1,200</p>
+            </div>
+            <div class="pricing-body">
+                <ul>
+                    <li><i class="fas fa-check"></i> התקנת מזגן עילי</li>
+                    <li><i class="fas fa-check"></i> עד 5 מטר צנרת</li>
+                    <li><i class="fas fa-check"></i> אחריות לשנתיים על ההתקנה</li>
+                    <li><i class="fas fa-check"></i> טיפול תקופתי שנתי</li>
+                    <li><i class="fas fa-check"></i> ניקוי פילטרים</li>
+                </ul>
+            </div>
+            <div class="pricing-footer">
+                <a href="#contact" class="pricing-button">לפרטים נוספים</a>
+            </div>
+        </div>
+        
+        <div class="pricing-card premium fade-in">
+            <div class="pricing-tag">מומלץ</div>
+            <div class="pricing-header">
+                <h3>חבילת פרימיום</h3>
+                <p class="price">לפי הצעת מחיר</p>
+            </div>
+            <div class="pricing-body">
+                <ul>
+                    <li><i class="fas fa-check"></i> התקנת מערכת מיזוג מרכזית / VRF</li>
+                    <li><i class="fas fa-check"></i> ללא הגבלת צנרת</li>
+                    <li><i class="fas fa-check"></i> אחריות ל-3 שנים על ההתקנה</li>
+                    <li><i class="fas fa-check"></i> חוזה שירות ותחזוקה שנתי</li>
+                    <li><i class="fas fa-check"></i> ניקוי פילטרים פעמיים בשנה</li>
+                    <li><i class="fas fa-check"></i> קדימות בקריאות שירות</li>
+                </ul>
+            </div>
+            <div class="pricing-footer">
+                <a href="#contact" class="pricing-button">לפרטים נוספים</a>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="our-works" id="our-works">
         <h2 class="section-title">הפרויקטים שלנו</h2>
         <p class="section-subtitle">מבחר מהעבודות האחרונות שביצענו</p>
         
         <div class="works-grid">
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work1.jpeg" alt="התקנת מזגן מרכזי" loading="lazy">
+                <img src="images/work1.jpeg" alt="התקנת מזגן מרכזי בבית פרטי בנהריה - סופר קור" loading="lazy" width="300" height="200">
                 <div class="work-overlay">
                     <h3>התקנת מזגן מרכזי</h3>
                     <p>בית פרטי בנהריה</p>
@@ -119,7 +282,7 @@
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work2.jpeg" alt="מערכת VRF" loading="lazy">
+                <img src="images/work2.jpeg" alt="התקנת מערכת VRF במשרדים בראש הנקרה - סופר קור" loading="lazy" width="300" height="200">
                 <div class="work-overlay">
                     <h3>מערכת VRF</h3>
                     <p>משרדים בראש הנקרה</p>
@@ -127,7 +290,7 @@
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work3.jpeg" alt="מיזוג תעשייתי" loading="lazy">
+                <img src="images/work3.jpeg" alt="התקנת מיזוג תעשייתי במפעל חוגלה קימברלי - סופר קור" loading="lazy" width="300" height="200">
                 <div class="work-overlay">
                     <h3>מיזוג תעשייתי</h3>
                     <p>מפעל חוגלה קימברלי</p>
@@ -135,7 +298,7 @@
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work4.jpeg" alt="התקנת מזגן עילי" loading="lazy">
+                <img src="images/work4.jpeg" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור" loading="lazy" width="300" height="200">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>דירה בנהריה</p>
@@ -145,16 +308,39 @@
         </div>
     </section>
 <!-- להוסיף אחרי סקציית our-works ולפני סקציית clients -->
-<section class="testimonials">
+<section class="testimonials" id="testimonials">
     <h2 class="section-title">מה הלקוחות אומרים עלינו</h2>
     <div class="testimonials-grid">
         <div class="testimonial-card">
             <div class="testimonial-text">
                 <i class="fas fa-quote-right"></i>
-                <p>שירות מקצועי ואדיב. התקינו לנו מזגן מרכזי בבית, העבודה הייתה נקייה ומהירה.</p>
+                <p>שירות מקצועי ואמין!
+הזמנתי את סופר קור נהריה להתקין מזגן חדש בבית, ואני חייב לומר שהשירות היה יוצא מן הכלל! הצוות הגיע בזמן, עבד בצורה נקייה ומסודרת, והמחיר היה הוגן לחלוטין. ממליץ בחום! </p>
             </div>
             <div class="testimonial-author">
                 <h4>משה כהן</h4>
+                <p>עכו</p>
+            </div>
+        </div>
+        
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                <i class="fas fa-quote-right"></i>
+                <p>מערכת המיזוג שהותקנה במשרדים שלנו עובדת בצורה מושלמת. השירות היה מקצועי ביותר והצוות עמד בלוחות הזמנים.</p>
+            </div>
+            <div class="testimonial-author">
+                <h4>דוד לוי</h4>
+                <p>מנהל משרד, קריית ביאליק</p>
+            </div>
+        </div>
+
+        <div class="testimonial-card">
+            <div class="testimonial-text">
+                <i class="fas fa-quote-right"></i>
+                <p>אחרי שעברנו בין כמה חברות מיזוג, סוף סוף מצאנו מישהו אמין. פתרו לנו בעיה שהייתה לנו במזגן שנים תוך שעה. ממליצים בחום!</p>
+            </div>
+            <div class="testimonial-author">
+                <h4>רחל כהן</h4>
                 <p>נהריה</p>
             </div>
         </div>
@@ -177,28 +363,28 @@
                     <i class="fas fa-industry"></i>
                 </div>
                 <h3>מפעלים ותעשייה</h3>
-                <p>אלי חג'ג', חוגלה קימברלי, מילופרי,מועדון ראש הנקרה </p>
+                <p>אלי חג'ג', חוגלה קימברלי, מילופרי, מועדון ראש הנקרה</p>
             </div>
         </div>
 
         <div class="clients-logos">
             <div class="client-logo">
-                <img src="images/nahariya-logo.png" alt="עיריית נהריה" loading="lazy">
+                <img src="images/nahariya-logo.png" alt="לוגו עיריית נהריה - לקוח של סופר קור" loading="lazy" width="150" height="80">
             </div>
             <div class="client-logo">
-                <img src="images/rosh-hanikra.png" alt="ראש הנקרה מועדון" loading="lazy">
+                <img src="images/rosh-hanikra.png" alt="לוגו מועדון ראש הנקרה - לקוח של סופר קור" loading="lazy" width="150" height="80">
             </div>
             <div class="client-logo">
-                <img src="images/hogla-logo.png" alt="חוגלה קימברלי" loading="lazy">
+                <img src="images/hogla-logo.png" alt="לוגו חוגלה קימברלי - לקוח של סופר קור" loading="lazy" width="150" height="80">
             </div>
             <div class="client-logo">
-                <img src="images/milopri-logo.png" alt="מילופרי" loading="lazy">
+                <img src="images/milopri-logo.png" alt="לוגו מילופרי - לקוח של סופר קור" loading="lazy" width="150" height="80">
             </div>
         </div>
     </section>
 
     <!-- החלק החדש - מי אנחנו -->
-    <section class="about-us">
+    <section class="about-us" id="about-us">
         <h2 class="section-title">מי אנחנו</h2>
         <div class="about-us-content">
             <p>
@@ -212,13 +398,54 @@
             </p>
         </div>
     </section>
-
+<section class="team">
+    <h2 class="section-title">הצוות המקצועי שלנו</h2>
+    <p class="section-subtitle">המומחים שעושים את ההבדל</p>
+    
+    <div class="team-container">
+        <div class="team-member fade-in">
+            <div class="member-image">
+    <img src="images/baruch.jpeg" alt="ברוך - מנהל ומומחה מיזוג אוויר">
+</div>
+            <div class="member-info">
+                <h3>ברוך</h3>
+                <p class="member-title">מנהל ומומחה מיזוג אוויר</p>
+                <p class="member-desc">בעל ניסיון של 30 שנה בענף מיזוג האוויר, מתמחה במערכות מיזוג מרכזיות ומסחריות.</p>
+                <p class="member-phone">
+                    <i class="fas fa-phone"></i> <a href="tel:0522613282" style="text-decoration:none; color:inherit;">052-2613282</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="team-member fade-in">
+            <div class="member-image">
+    <img src="images/netanel.jpeg" alt="נתנאל-טכנאי בכיר וראש תחום התקנות">
+         </div>
+            <div class="member-info">
+                <h3>נתנאל כהן</h3>
+                <p class="member-title">טכנאי בכיר וראש תחום ההתקנות</p>
+                <p class="member-desc">מומחה בהתקנות מזגנים עיליים ובפתרון תקלות מורכבות, בעל ניסיון של 15 שנה.</p>
+                <p class="member-phone">
+                    <i class="fas fa-phone"></i> <a href="tel:0526739037" style="text-decoration:none; color:inherit;">052-6739037</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- מודל להצגת תמונות -->
     <div id="imageModal" class="image-modal">
-        <span class="close-modal" onclick="closeImageModal()">&times;</span>
+    <span class="close-modal" onclick="ImageModal.close()" aria-label="סגור חלון">&times;</span>
+    <div class="modal-nav prev" onclick="ImageModal.prevImage()" aria-label="תמונה קודמת">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+    <div class="modal-content">
         <img id="modalImage" src="" alt="">
         <div class="modal-caption"></div>
     </div>
+    <div class="modal-nav next" onclick="ImageModal.nextImage()" aria-label="תמונה הבאה">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+</div>
 
     <div class="floating-contact-btn" onclick="scrollToContact()">
         <i class="fas fa-phone"></i>
@@ -250,10 +477,143 @@
     </div>
 </section>
 
+<section class="video-section">
+    <h2 class="section-title">צפו בנו בפעולה</h2>
+    <p class="section-subtitle">סרטון קצר על תהליך התקנת מזגן מרכזי</p>
+    
+    <div class="video-container fade-in">
+        <!-- אם אין סרטון אמיתי, משתמשים בתמונה עם אפקט סרטון -->
+        <div class="video-placeholder">
+            <img src="images/work1.jpeg" alt="התקנת מזגן - תמונת המחשה" width="800" height="450">
+            <div class="play-button">
+                <i class="fas fa-play"></i>
+            </div>
+            <div class="placeholder-overlay">
+                <p>סרטון המחשה יעלה בקרוב!</p>
+            </div>
+        </div>
+        
+        <!-- כשיהיה סרטון יוטיוב, יש להשתמש בקוד הבא: -->
+        <!-- 
+        <div class="responsive-video">
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        -->
+    </div>
+</section>
+
+<section class="faq">
+    <h2 class="section-title">שאלות נפוצות</h2>
+    
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>כמה עולה התקנת מזגן?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>מחיר התקנת מזגן תלוי בסוג המזגן, מיקום ההתקנה ואורך הצנרת הנדרש. המחיר הבסיסי להתקנת מזגן עילי מתחיל מ-750₪. עבור הצעת מחיר מדויקת, צרו קשר לקבלת הצעת מחיר ללא התחייבות.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>מהו משך הזמן הממוצע להתקנת מזגן?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>התקנת מזגן עילי רגיל אורכת בין שעתיים לארבע שעות, תלוי במורכבות ההתקנה. התקנת מערכת מיזוג מרכזית יכולה לארוך בין יום לשלושה ימים, תלוי בגודל הפרויקט.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>האם יש אחריות על העבודה והמזגנים?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>אנו מספקים אחריות של שנה על עבודת ההתקנה. לגבי המזגן עצמו, האחריות ניתנת על ידי היצרן ונעה בין 3-7 שנים בהתאם לדגם ולמותג.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>כיצד לדעת איזה מזגן מתאים לחלל שלי?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>הגורמים המשפיעים הם גודל החדר, כיוון החלונות, בידוד המבנה ומספר האנשים השוהים בחלל. אנו מציעים ייעוץ מקצועי חינם בבית הלקוח כדי להתאים את המזגן המושלם לצרכים שלכם.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>האם אתם נותנים שירות גם לבתי עסק?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>כן, אנחנו מתמחים במתן פתרונות מיזוג מקצועיים הן לבתים פרטיים והן לעסקים. אנו מציעים שירותי התקנה ותחזוקה של מערכות מיזוג מרכזיות, VRF, ומזגנים עיליים לחללים מסחריים ומשרדיים בכל הגדלים.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>באילו אזורים אתם פועלים?</h3>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                <p>אנו מספקים שירות באזור נהריה והסביבה, הקריות, עכו וכל אזור הצפון. לפרויקטים גדולים אנחנו מגיעים גם לאזורים נוספים - מוזמנים ליצור קשר לבדיקת זמינות.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- כפתור וואטסאפ צף -->
 <a href="https://wa.me/+972522613282?text=היי%20סופר%20קור,%20אשמח%20לקבל%20מידע%20על%20התקנה/תיקון%20מזגן" class="whatsapp-button" target="_blank">
     <i class="fab fa-whatsapp"></i>
     <span>צור קשר בוואטסאפ</span>
 </a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<section class="social-media">
+    <h2 class="section-title">עקבו אחרינו</h2>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/supercoolnahariya/" target="_blank" class="social-icon facebook" aria-label="Facebook">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/supercoolnahariya/" target="_blank" class="social-icon instagram" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/+972522613282?text=היי%20סופר%20קור,%20אשמח%20לקבל%20פרטים%20על%20שירותי%20מיזוג%20אוויר" target="_blank" class="social-icon whatsapp" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-logo">
+            <img src="images/supercool-logo.png" alt="סופר קור נהריה - לוגו פוטר" width="150" height="50" loading="lazy">
+        </div>
+        <div class="footer-info">
+            <p>סופר קור נהריה - מומחים למיזוג אוויר</p>
+            <p><i class="fas fa-map-marker-alt"></i> רחוב יצחק שדה , נהריה</p>
+            <p><i class="fas fa-phone"></i> <a href="tel:0522613282" style="color:white; text-decoration:none;">052-2613282</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:neorai10@gmail.com" style="color:white; text-decoration:none;">neorai10@gmail.com</a></p>
+        </div>
+        <div class="footer-nav">
+            <ul>
+                <li><a href="#services">השירותים שלנו</a></li>
+                <li><a href="#our-works">פרויקטים</a></li>
+                <li><a href="#testimonials">חוות דעת</a></li>
+                <li><a href="#about-us">אודות</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© כל הזכויות שמורות לסופר קור נהריה 2025</p>
+    </div>
+</footer>
 </body>
 </html>
