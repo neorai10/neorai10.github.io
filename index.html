@@ -27,7 +27,8 @@
     <meta property="og:type" content="website">
     
     <!-- External Resources -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="style.css"></noscript>
     
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
@@ -615,7 +616,9 @@
         <span>צור קשר</span>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
+
     <!-- להוסיף לפני סגירת ה-body -->
 <section class="service-areas">
     <h2 class="section-title">אזורי שירות</h2>
