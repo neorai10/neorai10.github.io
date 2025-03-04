@@ -158,62 +158,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </ul>
     </div>
 </nav>
-    <section class="hero">
-        <div class="hero-content">
-            <div class="company-logo">
-                <img src="images/supercool-logo.png" fetchpriority="high" alt="סופר קור נהריה - לוגו ראשי" width="300" height="100">
+  <section class="hero">
+    <div class="hero-content">
+        <div class="company-logo">
+            <img src="images/supercool-logo.png" fetchpriority="high" alt="סופר קור נהריה - לוגו ראשי" width="300" height="100">
+        </div>
+        <h1>התקנת ותיקון מזגנים בנהריה והצפון - סופר קור</h1>
+        <h2>שירותי מיזוג אוויר מקצועיים באזור הצפון - 30 שנות ניסיון</h2>
+        <p>המומחים למיזוג אוויר - התקנה, שירות ותחזוקה</p>
+        
+        <div class="contact-info-header">
+            <div style="background: linear-gradient(to right, #005792, #00bbf0); color: white; border-radius: 10px; padding: 15px; margin: 20px auto; max-width: 80%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: center;">
+                <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <div>
+                        <i class="fas fa-phone"></i> ברוך: <a href="tel:0522613282" style="color: white; text-decoration: none; font-weight: bold;">052-2613282</a>
+                    </div>
+                    <div>
+                        <i class="fas fa-phone"></i> נתנאל: <a href="tel:0526739037" style="color: white; text-decoration: none; font-weight: bold;">052-6739037</a>
+                    </div>
+                </div>
             </div>
-            <h1>התקנת ותיקון מזגנים בנהריה והצפון - סופר קור</h1>
-<h2>שירותי מיזוג אוויר מקצועיים באזור הצפון - 30 שנות ניסיון</h2>
-            <p>המומחים למיזוג אוויר - התקנה, שירות ותחזוקה</p>
-            
-<div class="contact-info-header">
-    <div style="background: linear-gradient(to right, #005792, #00bbf0); color: white; border-radius: 10px; padding: 15px; margin: 20px auto; max-width: 80%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: center;">
-        <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
-            <div>
-                <i class="fas fa-phone"></i> ברוך: <a href="tel:0522613282" style="color: white; text-decoration: none; font-weight: bold;">052-2613282</a>
-            </div>
-            <div>
-                <i class="fas fa-phone"></i> נתנאל: <a href="tel:0526739037" style="color: white; text-decoration: none; font-weight: bold;">052-6739037</a>
-            </div>
+        </div>
+        
+        <div class="contact-form" id="contact">
+            <h3>השאירו פרטים ונחזור אליכם בהקדם</h3>
+            <form id="mainContactForm" action="https://formspree.io/f/xkgovvnb" method="POST" onsubmit="return validateForm(this)">
+                <div class="form-group">
+                    <label for="contact-name">שם מלא</label>
+                    <input type="text" id="contact-name" name="name" placeholder="שם מלא" required minlength="2">
+                    <div class="form-validation-error">נא להזין שם מלא (לפחות 2 תווים)</div>
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">אימייל</label>
+                    <input type="email" id="contact-email" name="email" placeholder="אימייל" required>
+                    <div class="form-validation-error">נא להזין כתובת אימייל תקינה</div>
+                </div>
+                <div class="form-group">
+                    <label for="contact-phone">טלפון</label>
+                    <input type="tel" id="contact-phone" name="phone" placeholder="טלפון" required pattern="[0-9]{9,10}">
+                    <div class="form-validation-error">נא להזין מספר טלפון תקין (9-10 ספרות)</div>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">איך נוכל לעזור?</label>
+                    <textarea id="contact-message" name="message" placeholder="איך נוכל לעזור?" required minlength="10"></textarea>
+                    <div class="form-validation-error">נא להזין הודעה של לפחות 10 תווים</div>
+                </div>
+                
+                <input type="hidden" name="_subject" value="פנייה חדשה מהאתר - סופר קור">
+                <button type="submit" class="cta-button" aria-label="שלח טופס">שלח פנייה</button>
+            </form>
         </div>
     </div>
-</div>
-            </div>
-
-            <div class="contact-form" id="contact">
-                <h3>השאירו פרטים ונחזור אליכם בהקדם</h3>
-                <form id="mainContactForm" action="https://formspree.io/f/xkgovvnb" method="POST" onsubmit="return validateForm(this)">
-                    <div class="form-group">
-                        <label for="contact-name">שם מלא</label>
-                        <input type="text" id="contact-name" name="name" placeholder="שם מלא" required minlength="2">
-                        <div class="form-validation-error">נא להזין שם מלא (לפחות 2 תווים)</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-email">אימייל</label>
-                        <input type="email" id="contact-email" name="email" placeholder="אימייל" required>
-                        <div class="form-validation-error">נא להזין כתובת אימייל תקינה</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-phone">טלפון</label>
-                        <input type="tel" id="contact-phone" name="phone" placeholder="טלפון" required pattern="[0-9]{9,10}">
-                        <div class="form-validation-error">נא להזין מספר טלפון תקין (9-10 ספרות)</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-message">איך נוכל לעזור?</label>
-                        <textarea id="contact-message" name="message" placeholder="איך נוכל לעזור?" required minlength="10"></textarea>
-                        <div class="form-validation-error">נא להזין הודעה של לפחות 10 תווים</div>
-                    </div>
-                    
-                    <input type="hidden" name="_subject" value="פנייה חדשה מהאתר - סופר קור">
-                    <button type="submit" class="cta-button" aria-label="שלח טופס">שלח פנייה</button>
-                </form>
-            </div>
-        </div>
-    </section>
+</section>
 <section class="promotions">
     <div class="promo-container">
         <div class="promo-card fade-in">
