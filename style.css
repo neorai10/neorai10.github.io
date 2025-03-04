@@ -25,9 +25,10 @@ body {
 }
 
 /* חלק ראשי (hero) */
+/* מחליף את הקוד הקיים של .hero */
 .hero {
     position: relative;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.webp');
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg-mobile.webp');
     background-size: cover;
     background-position: center;
     color: white;
@@ -35,6 +36,15 @@ body {
     min-height: 80vh;
     display: flex;
     align-items: center;
+}
+
+/* הוסף את הקוד הזה אחרי הגדרת .hero */
+@media (min-width: 768px) {
+    .hero {
+        background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/hero-bg.webp');
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 .hero-content {
