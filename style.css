@@ -1432,17 +1432,3 @@ body {
     color: var(--primary-color);
 }
 /* הוסף לקובץ CSS */
-.contact-info-header {
-    height: auto;
-    min-height: 100px; /* התאם לפי הצורך */
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-info-header > div {
-    display: flex;
-    flex-direction: column;
-    min-height: 80px; /* התאם לפי הצורך */
-}
