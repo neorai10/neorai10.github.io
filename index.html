@@ -3,6 +3,8 @@
 <head>
 <link rel="preconnect" href="https://www.googletagmanager.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -81,10 +83,10 @@
 </style>
     
     
-    <script src="critical.js" ></script>
-    
-    <script type="application/ld+json">
+    <script src="critical.js" defer></script>
     <!-- Schema.org markup for Google -->
+    <script type="application/ld+json">
+    
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
@@ -181,6 +183,13 @@
     <!-- תגית Canonical -->
 <link rel="canonical" href="https://superkor.co.il/">
 <link rel="preload" href="images/hero-bg.webp" as="image" fetchpriority="high">
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MSH3WDS8');
+</script>
 </head>
 <body>
 <!-- הוסף מיד אחרי פתיחת תג body, לפני ה-Google Tag Manager -->
@@ -197,9 +206,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <nav class="main-nav">
     <div class="nav-container">
         
-        <div class="nav-toggle" aria-label="פתח תפריט">
-            <i class="fas fa-bars"></i>
-        </div>
+       <button class="nav-toggle" aria-label="פתח תפריט" aria-expanded="false">
+    <i class="fas fa-bars"></i>
+</button>
         <ul class="nav-links">
             <li><a href="#services">השירותים שלנו</a></li>
             <li><a href="#our-works">פרויקטים</a></li>
@@ -222,7 +231,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div style="background: linear-gradient(to right, #005792, #00bbf0); color: white; border-radius: 10px; padding: 15px; margin: 20px auto; max-width: 80%; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: center;">
                 <div style="display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 20px;">
                     <div>
-                        <i class="fas fa-phone"></i> ברוך: <a href="tel:0522613282" style="color: white; text-decoration: none; font-weight: bold;">052-2613282</a>
+                        <i class="fas fa-phone"></i> ברוך: <a href="tel:+972522613282" style="color: white; text-decoration: none; font-weight: bold;">052-2613282</a>
                     </div>
                     <div>
                         <i class="fas fa-phone"></i> נתנאל: <a href="tel:0526739037" style="color: white; text-decoration: none; font-weight: bold;">052-6739037</a>
@@ -442,7 +451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work7.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור" loading="lazy" width="300" height="200">
+                <img src="images/work7.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור" loading="lazy" width="300" height="200"  decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן יחידה נסתרת</h3>
                     <p>דירה בעכו</p>
@@ -450,7 +459,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work1.webp" alt="התקנת מזגן עילי בבית פרטי בנהריה - מיזוג אוויר מקצועי סופר קור" loading="lazy" width="300" height="200">
+                <img src="images/work1.webp" alt="התקנת מזגן עילי בבית פרטי בנהריה - מיזוג אוויר מקצועי סופר קור" loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי וחציבה לבקשת הלקוח</h3>
                     <p>יחידת ממד </p>
@@ -458,7 +467,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work3.webp" alt=" התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200">
+                <img src="images/work3.webp" alt=" התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>מיזוג קומפלט לדירה בנהריה 4 יחידות תדיראן</p>
@@ -466,7 +475,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work10.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200">
+                <img src="images/work10.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>מיזוג קומפלט לדירה בנהריה 4 יחידות תדיראן</p>
@@ -474,7 +483,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work11.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200">
+                <img src="images/work11.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>מיזוג קומפלט לדירה בנהריה 4 יחידות תדיראן</p>
@@ -482,21 +491,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work12.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200">
+                <img src="images/work12.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>מיזוג קומפלט לדירה בנהריה 4 יחידות תדיראן</p>
                     <span class="view-more">לחץ להגדלה</span>
                 </div>
->
             </div>
                             <div class="work-card" onclick="openImageModal(this)">
-                <img src="images/work13.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200">
+                <img src="images/work13.webp" alt="התקנת מזגן עילי בדירה בנהריה - סופר קור מיזוג אוויר מקצועי " loading="lazy" width="300" height="200" decoding="async">
                 <div class="work-overlay">
                     <h3>התקנת מזגן עילי</h3>
                     <p>מיזוג קומפלט לדירה בנהריה 4 יחידות תדיראן</p>
                     <span class="view-more">לחץ להגדלה</span>
-                </div
+                </div>
             </div>
             
         </div>
@@ -669,15 +677,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="script.js" defer></script>
 
-    <script defer>
-window.addEventListener('load', function() {
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-MSH3WDS8');
-});
-</script>
+
          <!-- Google Analytics -->
 <script>
 window.addEventListener('load', function() {
@@ -913,9 +913,7 @@ window.addEventListener('load', function() {
         <p>© כל הזכויות שמורות לסופר קור נהריה 2025</p>
     </div>
 </footer>
-<!-- לפני סגירת תגית body -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/solid.min.js" defer></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/brands.min.js" defer></script>
+
 <!-- הוסף לפני סגירת תג body, לפני הסקריפט האחרון -->
 <script>
     window.addEventListener('load', function() {

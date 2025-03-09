@@ -15,7 +15,9 @@ function initMobileNav() {
     
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', () => {
+            const isExpanded = navLinks.classList.contains('active');
             navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', !isExpanded);
         });
         
         // סגירת התפריט בלחיצה על קישור
@@ -23,6 +25,7 @@ function initMobileNav() {
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }

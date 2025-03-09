@@ -60,7 +60,7 @@ const UIFeedback = {
         }
     },
     
-    showSubmitStatus: (button, status, message) => {
+ showSubmitStatus: (button, status, message) => {
         if (!button) return;
         
         switch (status) {
@@ -70,11 +70,13 @@ const UIFeedback = {
                 break;
             case 'success':
                 button.innerHTML = '<i class="fas fa-check"></i> ' + message;
+                button.disabled = false;
                 // Show success message
                 UIFeedback.showStatusMessage('success', 'הטופס נשלח בהצלחה! נציג שלנו יחזור אליך בהקדם.');
                 break;
             case 'error':
                 button.innerHTML = '<i class="fas fa-times"></i> ' + message;
+                button.disabled = false;
                 // Show error message
                 UIFeedback.showStatusMessage('error', 'אירעה שגיאה בשליחת הטופס. אנא נסו שוב.');
                 break;
@@ -172,7 +174,7 @@ const ImageModal = {
     currentIndex: 0,
     images: [],
     
-    open: (card) => {
+open: (card) => {
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('modalImage');
         if (!modal || !modalImg) return;
@@ -200,9 +202,11 @@ const ImageModal = {
             }
         });
         
-        ImageModal.showImage(ImageModal.currentIndex);
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        setTimeout(() => {
+            ImageModal.showImage(ImageModal.currentIndex);
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }, 50);
     },
     
     close: () => {
