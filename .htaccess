@@ -9,3 +9,28 @@
   ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType text/javascript "access plus 1 month"
 </IfModule>
+
+# הגנה על תיקיות
+Options -Indexes
+
+# הפניית HTTP ל-HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# אבטחת קבצים רגישים
+<FilesMatch "(\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp)|~)$">
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</FilesMatch>
+
+# הוספת HTTP Security Headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-XSS-Protection "1; mode=block"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
