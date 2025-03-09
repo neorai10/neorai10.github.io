@@ -184,12 +184,22 @@
 <link rel="canonical" href="https://superkor.co.il/">
 <link rel="preload" href="images/hero-bg.webp" as="image" fetchpriority="high">
 <script>
+// הגדרות ברירת מחדל - כל העוגיות מושבתות עד לקבלת הסכמה
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied'
+});
+</script>
+<script>
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-MSH3WDS8');
 </script>
+
 </head>
 <body>
 <!-- הוסף מיד אחרי פתיחת תג body, לפני ה-Google Tag Manager -->
@@ -913,7 +923,30 @@ window.addEventListener('load', function() {
         <p>© כל הזכויות שמורות לסופר קור נהריה 2025</p>
     </div>
 </footer>
+<div id="cookieConsent" style="position:fixed; bottom:0; left:0; right:0; background: rgba(0,87,146,0.95); color:white; text-align:center; padding:15px; z-index:9999; display:none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; border-top: 2px solid #00bbf0;">
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 15px;">
+    <div>אתר זה משתמש בעוגיות כדי להעניק לך את החוויה הטובה ביותר.</div>
+    <div>
+      <button onclick="acceptCookies()" style="background:#00bbf0; color:white; border:none; border-radius:5px; padding:8px 15px; cursor:pointer; font-weight:bold;">אני מסכים</button>
+    </div>
+  </div>
+</div>
 
+<script>
+// בדוק אם המשתמש כבר נתן הסכמה
+if (!localStorage.getItem('cookieConsent')) {
+  document.getElementById('cookieConsent').style.display = 'block';
+}
+
+function acceptCookies() {
+  localStorage.setItem('cookieConsent', 'granted');
+  document.getElementById('cookieConsent').style.display = 'none';
+  gtag('consent', 'update', {
+    'analytics_storage': 'granted',
+    'ad_storage': 'granted'
+  });
+}
+</script>
 <!-- הוסף לפני סגירת תג body, לפני הסקריפט האחרון -->
 <script>
     window.addEventListener('load', function() {
