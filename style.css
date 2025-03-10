@@ -245,7 +245,7 @@ body {
 
 /* כפתורים */
 .cta-button {
-    background-color: #007bff;
+    background-color: #0056b3;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -256,7 +256,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #0056b3;
+    background-color: #003d80;
 }
 
 /* חלק העבודות */
@@ -571,7 +571,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #128c7e;
+    background-color: #075e54;
     color: white;
     padding: 12px 24px;
     border-radius: 50px;
@@ -586,7 +586,7 @@ body {
 }
 
 .whatsapp-button:hover {
-    background-color: #075e54;
+    background-color: #054c44;
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
