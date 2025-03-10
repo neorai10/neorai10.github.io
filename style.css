@@ -245,7 +245,7 @@ body {
 
 /* כפתורים */
 .cta-button {
-    background-color: var(--secondary-color);
+    background-color: #007bff;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -256,7 +256,7 @@ body {
 }
 
 .cta-button:hover {
-    background-color: #0099cc;
+    background-color: #0056b3;
 }
 
 /* חלק העבודות */
@@ -561,8 +561,9 @@ body {
 }
 
 .area-card .emergency {
-    color: #e74c3c;
+    color: #d12020;
     font-weight: bold;
+    text-shadow: 0 0 1px rgba(0,0,0,0.2);
 }
 
 /* כפתור וואטסאפ */
@@ -570,7 +571,7 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #25d366;
+    background-color: #128c7e;
     color: white;
     padding: 12px 24px;
     border-radius: 50px;
@@ -581,10 +582,11 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
 
 .whatsapp-button:hover {
-    background-color: #128c7e;
+    background-color: #075e54;
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
