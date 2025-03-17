@@ -283,96 +283,192 @@ function initVideoPlaceholder() {
 }
 
 // Secondary initialization on document ready
+// Secondary initialization on document ready
 document.addEventListener('DOMContentLoaded', () => {
-    // אתחול פונקציות שאינן קריטיות לטעינה ראשונית
-    initFaqToggle();
-    initVideoPlaceholder();
-    
-    // Modal event listeners
-    const imageModal = document.getElementById('imageModal');
-    if (imageModal) {
-        imageModal.addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                ImageModal.close();
-            }
-        });
-    }
-    
-    // Keyboard events
-    document.addEventListener('keydown', (e) => {
-        if (document.getElementById('imageModal')?.style.display === 'flex') {
-            if (e.key === 'Escape') {
-                ImageModal.close();
-            } else if (e.key === 'ArrowLeft') {
-                ImageModal.nextImage();
-            } else if (e.key === 'ArrowRight') {
-                ImageModal.prevImage();
-            }
-        }
-    });
-    
-    // Form submission
-    const mainContactForm = document.getElementById('mainContactForm');
-    if (mainContactForm) {
-        mainContactForm.addEventListener('submit', handleSubmit);
-    }
-    
-    // Add input event listeners for real-time validation
-    document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
-        input.addEventListener('input', () => {
-            const group = input.closest('.form-group');
-            if (group) {
-                const errorMessage = ValidationUtils.getErrorMessage(input);
-                
-                if (errorMessage) {
-                    UIFeedback.showError(group, errorMessage);
-                } else {
-                    UIFeedback.clearError(group);
-                }
-            }
-        });
-    });
+   // אתחול פונקציות שאינן קריטיות לטעינה ראשונית
+   initFaqToggle();
+   initVideoPlaceholder();
+   
+   // Modal event listeners
+   const imageModal = document.getElementById('imageModal');
+   if (imageModal) {
+       imageModal.addEventListener('click', (e) => {
+           if (e.target === e.currentTarget) {
+               ImageModal.close();
+           }
+       });
+   }
+   
+   // Keyboard events
+   document.addEventListener('keydown', (e) => {
+       if (document.getElementById('imageModal')?.style.display === 'flex') {
+           if (e.key === 'Escape') {
+               ImageModal.close();
+           } else if (e.key === 'ArrowLeft') {
+               ImageModal.nextImage();
+           } else if (e.key === 'ArrowRight') {
+               ImageModal.prevImage();
+           }
+       }
+   });
+   
+   // Form submission
+   const mainContactForm = document.getElementById('mainContactForm');
+   if (mainContactForm) {
+       mainContactForm.addEventListener('submit', handleSubmit);
+   }
+   
+   // Add input event listeners for real-time validation
+   document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+       input.addEventListener('input', () => {
+           const group = input.closest('.form-group');
+           if (group) {
+               const errorMessage = ValidationUtils.getErrorMessage(input);
+               
+               if (errorMessage) {
+                   UIFeedback.showError(group, errorMessage);
+               } else {
+                   UIFeedback.clearError(group);
+               }
+           }
+       });
+   });
+   
+   // Accessibility Menu
+   function initAccessibilityMenu() {
+       const accessibilityBtn = document.querySelector('.accessibility-btn');
+       const accessibilityMenu = document.querySelector('.accessibility-menu');
+       
+       if (!accessibilityBtn || !accessibilityMenu) return;
+       
+       // Toggle the menu
+       accessibilityBtn.addEventListener('click', () => {
+           accessibilityMenu.classList.toggle('active');
+       });
+       
+       // Close the menu when clicking outside
+       document.addEventListener('click', (e) => {
+           if (!accessibilityMenu.contains(e.target) && e.target !== accessibilityBtn) {
+               accessibilityMenu.classList.remove('active');
+           }
+       });
+       
+       // Initialize from saved settings
+       loadAccessibilitySettings();
+       
+       // Toggle larger text
+       document.getElementById('toggleLargerText').addEventListener('click', (e) => {
+           document.body.classList.toggle('larger-text');
+           toggleButtonText(e.target, document.body.classList.contains('larger-text'));
+           saveAccessibilitySettings();
+       });
+       
+       // Toggle high contrast
+       document.getElementById('toggleHighContrast').addEventListener('click', (e) => {
+           document.body.classList.toggle('high-contrast');
+           toggleButtonText(e.target, document.body.classList.contains('high-contrast'));
+           saveAccessibilitySettings();
+       });
+       
+       // Toggle text spacing
+       document.getElementById('toggleTextSpacing').addEventListener('click', (e) => {
+           document.body.classList.toggle('text-spacing');
+           toggleButtonText(e.target, document.body.classList.contains('text-spacing'));
+           saveAccessibilitySettings();
+       });
+       
+       // Reset all
+       document.getElementById('resetAccessibility').addEventListener('click', () => {
+           document.body.classList.remove('larger-text', 'high-contrast', 'text-spacing');
+           document.querySelectorAll('.accessibility-option button').forEach(button => {
+               if (button.id !== 'resetAccessibility') {
+                   button.textContent = 'הפעל';
+               }
+           });
+           localStorage.removeItem('accessibilitySettings');
+       });
+   }
+
+   // Helper functions
+   function toggleButtonText(button, isActive) {
+       button.textContent = isActive ? 'כבה' : 'הפעל';
+   }
+
+   function saveAccessibilitySettings() {
+       const settings = {
+           largerText: document.body.classList.contains('larger-text'),
+           highContrast: document.body.classList.contains('high-contrast'),
+           textSpacing: document.body.classList.contains('text-spacing')
+       };
+       localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
+   }
+
+   function loadAccessibilitySettings() {
+       const savedSettings = localStorage.getItem('accessibilitySettings');
+       if (!savedSettings) return;
+       
+       const settings = JSON.parse(savedSettings);
+       
+       if (settings.largerText) {
+           document.body.classList.add('larger-text');
+           document.getElementById('toggleLargerText').textContent = 'כבה';
+       }
+       
+       if (settings.highContrast) {
+           document.body.classList.add('high-contrast');
+           document.getElementById('toggleHighContrast').textContent = 'כבה';
+       }
+       
+       if (settings.textSpacing) {
+           document.body.classList.add('text-spacing');
+           document.getElementById('toggleTextSpacing').textContent = 'כבה';
+       }
+   }
+
+   // קריאה לפונקציה
+   initAccessibilityMenu();
 });
+
 // ניהול הסכמת עוגיות GDPR
 document.addEventListener('DOMContentLoaded', function() {
-    const cookieBanner = document.getElementById('cookieConsentBanner');
-    const acceptAllBtn = document.getElementById('cookieAcceptAll');
-    const acceptEssentialBtn = document.getElementById('cookieAcceptEssential');
-    
-    // בדוק אם כבר ניתנה הסכמה
-    if (!localStorage.getItem('cookieConsent')) {
-        cookieBanner.style.display = 'block';
-    } else {
-        // שחזר את הגדרות ההסכמה הקודמות
-        const consentType = localStorage.getItem('cookieConsent');
-      if (consentType === 'all') {
-    gtag('consent', 'update', {
-        'analytics_storage': 'granted',
-        'ad_storage': 'granted',
-        'ad_user_data': 'granted',
-        'ad_personalization': 'granted'
-    });
+   const cookieBanner = document.getElementById('cookieConsentBanner');
+   const acceptAllBtn = document.getElementById('cookieAcceptAll');
+   const acceptEssentialBtn = document.getElementById('cookieAcceptEssential');
+   
+   // בדוק אם כבר ניתנה הסכמה
+   if (!localStorage.getItem('cookieConsent')) {
+       cookieBanner.style.display = 'block';
+   } else {
+       // שחזר את הגדרות ההסכמה הקודמות
+       const consentType = localStorage.getItem('cookieConsent');
+     if (consentType === 'all') {
+   gtag('consent', 'update', {
+       'analytics_storage': 'granted',
+       'ad_storage': 'granted',
+       'ad_user_data': 'granted',
+       'ad_personalization': 'granted'
+   });
 }
-    }
-    
-    // אישור כל העוגיות
-    acceptAllBtn.addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'all');
-        cookieBanner.style.display = 'none';
-      // עדכן את הגדרות ההסכמה של Google
+   }
+   
+   // אישור כל העוגיות
+   acceptAllBtn.addEventListener('click', function() {
+       localStorage.setItem('cookieConsent', 'all');
+       cookieBanner.style.display = 'none';
+     // עדכן את הגדרות ההסכמה של Google
 gtag('consent', 'update', {
-    'analytics_storage': 'granted',
-    'ad_storage': 'granted',
-    'ad_user_data': 'granted',
-    'ad_personalization': 'granted'
+   'analytics_storage': 'granted',
+   'ad_storage': 'granted',
+   'ad_user_data': 'granted',
+   'ad_personalization': 'granted'
 });
-    });
-    
-    // אישור רק עוגיות חיוניות
-    acceptEssentialBtn.addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'essential');
-        cookieBanner.style.display = 'none';
-        
-        // השאר את הגדרות ברירת המחדל (denied)
-    });
+   });
+   
+   // אישור רק עוגיות חיוניות
+   acceptEssentialBtn.addEventListener('click', function() {
+       localStorage.setItem('cookieConsent', 'essential');
+       cookieBanner.style.display = 'none';
+       
+       // השאר את הגדרות ברירת המחדל (denied)
+   });
 });
