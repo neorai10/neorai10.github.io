@@ -1436,3 +1436,85 @@ body {
     color: var(--primary-color);
 }
 /* הוסף לקובץ CSS */
+/* סגנונות באנר עוגיות */
+.cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 87, 146, 0.95);
+  color: white;
+  padding: 20px;
+  z-index: 9999;
+  display: none;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+  border-top: 3px solid #00bbf0;
+}
+
+.cookie-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+}
+
+.cookie-text {
+  flex-grow: 1;
+}
+
+.cookie-text p {
+  margin: 5px 0;
+  line-height: 1.4;
+}
+
+.cookie-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cookie-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.cookie-btn:hover {
+  transform: translateY(-2px);
+}
+
+.cookie-accept {
+  background: #00bbf0;
+  color: white;
+}
+
+.cookie-accept:hover {
+  background: #0097c3;
+}
+
+.cookie-essential {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid white;
+}
+
+.cookie-essential:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 768px) {
+  .cookie-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cookie-buttons {
+    width: 100%;
+    justify-content: center;
+  }
+}

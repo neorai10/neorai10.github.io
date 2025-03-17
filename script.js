@@ -333,3 +333,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+// ניהול הסכמת עוגיות GDPR
+document.addEventListener('DOMContentLoaded', function() {
+    const cookieBanner = document.getElementById('cookieConsentBanner');
+    const acceptAllBtn = document.getElementById('cookieAcceptAll');
+    const acceptEssentialBtn = document.getElementById('cookieAcceptEssential');
+    
+    // בדוק אם כבר ניתנה הסכמה
+    if (!localStorage.getItem('cookieConsent')) {
+        cookieBanner.style.display = 'block';
+    } else {
+        // שחזר את הגדרות ההסכמה הקודמות
+        const consentType = localStorage.getItem('cookieConsent');
+        if (consentType === 'all') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted'
+            });
+        }
+    }
+    
+    // אישור כל העוגיות
+    acceptAllBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'all');
+        cookieBanner.style.display = 'none';
+        
+        // עדכן את הגדרות ההסכמה של Google
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted'
+        });
+    });
+    
+    // אישור רק עוגיות חיוניות
+    acceptEssentialBtn.addEventListener('click', function() {
+        localStorage.setItem('cookieConsent', 'essential');
+        cookieBanner.style.display = 'none';
+        
+        // השאר את הגדרות ברירת המחדל (denied)
+    });
+});
