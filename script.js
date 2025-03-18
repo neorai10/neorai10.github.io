@@ -472,3 +472,65 @@ gtag('consent', 'update', {
        // השאר את הגדרות ברירת המחדל (denied)
    });
 });
+// ניהול הסכמת עוגיות GDPR
+document.addEventListener('DOMContentLoaded', function() {
+   // ... (כל הקוד של עוגיות שכבר קיים)
+}); 
+// סוף הקוד הקיים
+
+// מעקב אחר לחיצות טלפון
+document.addEventListener('DOMContentLoaded', function() {
+    // מצא את כל הקישורים עם מספרי טלפון
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    
+    // הוסף מאזין אירועים לכל קישור טלפון
+    phoneLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            const phoneNumber = this.getAttribute('href').replace('tel:', '');
+            // שלח אירוע לגוגל טאג מנג'ר
+            if (typeof dataLayer !== 'undefined') {
+                dataLayer.push({
+                    'event': 'phone_call',
+                    'phone_number': phoneNumber,
+                    'phone_call_location': getCurrentSection()
+                });
+                console.log('Phone call tracking:', phoneNumber);
+            }
+        });
+    });
+    
+    // פונקציה לזיהוי המיקום באתר ממנו בוצעה השיחה
+    function getCurrentSection() {
+        // זיהוי בסיסי של החלק באתר
+        if (window.location.pathname.includes('/blog/')) {
+            return 'blog_page';
+        }
+        
+        // בדף הבית, ננסה לזהות את החלק הספציפי
+        const sections = ['hero', 'services', 'our-works', 'testimonials', 'about-us', 'contact'];
+        let currentSection = 'unknown';
+        
+        // בדוק איזה חלק מוצג כרגע למשתמש
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            if (element && isElementInViewport(element)) {
+                currentSection = section;
+            }
+        });
+        
+        return currentSection;
+    }
+    
+    // בדיקה אם אלמנט נראה בחלון הנוכחי
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+        const windowWidth = (window.innerWidth || document.documentElement.clientWidth);
+        
+        // בדיקה אם חלק משמעותי מהאלמנט נראה (לא רק קצה)
+        const vertInView = (rect.top <= windowHeight * 0.7) && ((rect.top + rect.height) >= windowHeight * 0.3);
+        const horInView = (rect.left <= windowWidth) && ((rect.left + rect.width) >= 0);
+        
+        return (vertInView && horInView);
+    }
+});
