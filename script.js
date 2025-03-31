@@ -267,7 +267,33 @@ function initFaqToggle() {
         }
     });
 }
-
+// פונקציה חדשה - גלריית תמונות מודרנית
+function initModernGallery() {
+    const workCards = document.querySelectorAll('.work-card');
+    
+    workCards.forEach(card => {
+        // הוסף אפקט hover מודרני
+        card.addEventListener('mouseenter', function() {
+            this.querySelector('img').style.transform = 'scale(1.08)';
+            this.querySelector('.work-overlay').style.opacity = '1';
+            this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.2)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.querySelector('img').style.transform = 'scale(1)';
+            this.querySelector('.work-overlay').style.opacity = '0.8';
+            this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        });
+    });
+    
+    // שיפור המודל הקיים
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.classList.add('modern-modal');
+        // הוסף אנימציה חלקה יותר
+        modal.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    }
+}
 // טיפול בסרטון
 function initVideoPlaceholder() {
     const videoPlaceholder = document.querySelector('.video-placeholder');
@@ -288,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
    // אתחול פונקציות שאינן קריטיות לטעינה ראשונית
    initFaqToggle();
    initVideoPlaceholder();
-   
+   initModernGallery();
    // Modal event listeners
    const imageModal = document.getElementById('imageModal');
    if (imageModal) {
