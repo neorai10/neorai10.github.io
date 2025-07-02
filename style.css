@@ -1448,7 +1448,51 @@ body {
     white-space: nowrap;
     border: 0;
 }
+/* סגנון אחיד לכל הסקציות */
+.services, .pricing, .our-works, .testimonials, .clients, .team, .service-areas, .video-section, .faq, .social-media {
+    position: relative;
+    padding: 4rem 2rem;
+    text-align: center;
+}
 
+/* כותרת סקציה בסגנון "מי אנחנו" */
+.section-title {
+    display: inline-block;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, var(--primary-color) 50%, rgba(255,255,255,0) 100%);
+    background-size: 200% auto;
+    background-position: 0 100%;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    animation: shine 3s linear infinite;
+}
+
+/* אפקט אנימציה לשאר הכרטיסיות */
+.service-card, .pricing-card, .testimonial-card, .work-card, .client-card, .team-member, .area-card, .faq-item, .promo-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.service-card:hover, .pricing-card:hover, .testimonial-card:hover, .work-card:hover, .client-card:hover, .team-member:hover, .area-card:hover, .faq-item:hover, .promo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+/* רקע גרדיאנט לסקציות מתחלפות */
+.services, .testimonials, .team, .faq, .pricing {
+    background: linear-gradient(to right, #f9f9f9, #ffffff);
+}
+
+.our-works, .clients, .service-areas, .video-section, .social-media {
+    background: linear-gradient(to left, #f9f9f9, #ffffff);
+}
+/* רקע גרדיאנט לסקציות מתחלפות */
+.services, .testimonials, .team, .faq, .pricing {
+    background: linear-gradient(to right, #f9f9f9, #ffffff);
+}
+
+.our-works, .clients, .service-areas, .video-section, .social-media {
+    background: linear-gradient(to left, #f9f9f9, #ffffff);
+}
 /* התאמות למובייל */
 @media (max-width: 768px) {
     .nav-links {
