@@ -75,7 +75,36 @@ body { font-family: 'Heebo', sans-serif; color: #fff; }
 .phone { font-size: 150px; font-weight: 900; direction: ltr; line-height: 1.1; margin: 10px 0 6px; background: linear-gradient(90deg, #fff, #7fe8ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .name { font-size: 40px; font-weight: 600; color: #cfe6f7; }
 .url { display: inline-block; margin-top: 34px; font-size: 46px; font-weight: 900; direction: ltr; padding: 14px 46px; border-radius: 999px; background: linear-gradient(135deg, #0a84d6, #005792); box-shadow: 0 16px 50px rgba(0,140,220,.55); }
+
+/* ===== גרסה אנכית לרילס/סטורי (1080x1920): promo.html?format=reel ===== */
+.reel, .reel body, .reel .stage { width: 1080px; height: 1920px; }
+.reel .glow { width: 800px; height: 800px; top: 100px; left: 0; }
+.reel .flake { animation-name: fallReel; }
+@keyframes fallReel { to { transform: translate(80px, 2000px); } }
+.reel .logo { width: 240px; height: 240px; border-radius: 64px; margin-bottom: 60px; }
+.reel .logo svg { width: 150px; height: 150px; }
+.reel .title { font-size: 170px; }
+.reel .title b { display: block; }
+.reel .sub { font-size: 58px; margin-top: 30px; padding: 0 60px; }
+.reel .big { font-size: 520px; }
+.reel .big-label { font-size: 130px; }
+.reel .photo .frame { inset: 200px 50px 520px; }
+.reel .photo img { border-radius: 36px; border-width: 6px; }
+.reel .caption { height: 440px; flex-direction: column; justify-content: center; align-items: center; gap: 44px; text-align: center; padding: 0 50px; }
+.reel .caption h2 { font-size: 76px; line-height: 1.15; }
+.reel .caption p { font-size: 44px; margin-top: 10px; }
+.reel .tag { font-size: 40px; }
+.reel .tag i { width: 70px; height: 70px; border-radius: 20px; }
+.reel .tag svg { width: 44px; height: 44px; }
+.reel .heading { font-size: 104px; line-height: 1.15; margin-bottom: 70px; padding: 0 60px; }
+.reel .chips { grid-template-columns: 1fr; width: 860px; gap: 34px; }
+.reel .chip { font-size: 64px; padding: 44px 20px; border-radius: 40px; }
+.reel .cta-small { font-size: 62px; padding: 0 60px; line-height: 1.3; }
+.reel .phone { font-size: 158px; margin: 40px 0 20px; }
+.reel .name { font-size: 54px; }
+.reel .url { font-size: 66px; margin-top: 70px; padding: 22px 70px; }
 </style>
+<script>if (/format=reel/.test(location.search)) document.documentElement.classList.add('reel');</script>
 </head>
 <body>
 <div class="stage">
@@ -153,7 +182,7 @@ var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed /
 var flakes = '';
 for (var i = 0; i < 46; i++) {
     var size = 3 + rnd() * 6, dur = 7 + rnd() * 9;
-    flakes += '<i class="flake" style="left:' + (rnd() * 1280).toFixed(0) + 'px;width:' + size.toFixed(1) + 'px;height:' + size.toFixed(1) +
+    flakes += '<i class="flake" style="left:' + (rnd() * (document.documentElement.classList.contains('reel') ? 1080 : 1280)).toFixed(0) + 'px;width:' + size.toFixed(1) + 'px;height:' + size.toFixed(1) +
         'px;opacity:' + (.25 + rnd() * .5).toFixed(2) + ';animation-duration:' + dur.toFixed(1) + 's;animation-delay:-' + (rnd() * dur).toFixed(1) + 's;animation-iteration-count:infinite"></i>';
 }
 document.getElementById('snow').innerHTML = flakes;
