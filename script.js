@@ -460,6 +460,8 @@ document.addEventListener('DOMContentLoaded', function() {
    const cookieBanner = document.getElementById('cookieConsentBanner');
    const acceptAllBtn = document.getElementById('cookieAcceptAll');
    const acceptEssentialBtn = document.getElementById('cookieAcceptEssential');
+   // בעמודים בלי באנר עוגיות (למשל הבלוג) אין מה לאתחל
+   if (!cookieBanner || !acceptAllBtn || !acceptEssentialBtn) return;
    
    // בדוק אם כבר ניתנה הסכמה
    if (!localStorage.getItem('cookieConsent')) {
